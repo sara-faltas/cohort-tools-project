@@ -1,0 +1,31 @@
+{
+  "name": "cohort-tools-project",
+  "version": "1.0.0",
+  "description": "This documentation provides an overview of the available routes and data models for the Cohort Tools API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sara-designer88/cohort-tools-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sara-designer88/cohort-tools-project/issues"
+  },
+  "homepage": "https://github.com/Sara-designer88/cohort-tools-project#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
