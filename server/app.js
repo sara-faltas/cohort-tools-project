@@ -93,19 +93,132 @@ app.get("/cohorts", (req, res) => {
     });
 });
 
+// this is to create a new student
+app.post("/cohorts", async (req,res) =>{
+  try {
+    const newCohort = {
+    cohortSlug: req.body.cohortSlug,
+  cohortName: req.body.cohortName,
+  program: req.body.program,
+  campus: req.body.campus,
+  startDate: req.body.startDate,
+  endDate: req.body.endDate
+    }
+   const response = await Cohort.create(newCohort)
+   res.status(200).json(response)
+   console.log("new cohort created")
+  }catch(error){
+   console.log(error)
+  }
+})
+
+
+// this is to update the student 
+app.patch("/cohorts/:cohortId", async (req,res) =>{
+  try {
+    const updatedCohort = {
+      cohortSlug: req.body.cohortSlug,
+  cohortName: req.body.cohortName,
+  program: req.body.program,
+  campus: req.body.campus,
+  startDate: req.body.startDate,
+  endDate: req.body.endDate,
+    }
+   const response = await Cohort.findByIdAndUpdate(req.params.cohortId,updatedCohort, {new:true})
+   res.status(200).json(response)
+   console.log("new cohort updated")
+  }catch(error){
+    console.log(error)
+  }
+})
+
+
+// this is to delete a student 
+app.delete("/cohorts/:cohortId", async (req,res) =>{
+  try {
+   const response = await Cohort.findByIdAndDelete(req.params.cohortId)
+   res.sendStatus(200)
+   console.log("cohort deleted")
+  }catch(error){
+    console.log(error)
+  }
+})
+
 // GET ALL STUDENTS
 // Route: GET /students
-app.get("/students", (req, res) => {
-  Student.find({})
-    .then((students) => {
-      console.log("Retrieved students ->", students);
-      res.json(students);
-    })
-    .catch((error) => {
-      console.error("Error while retrieving students ->", error);
-      res.status(500).json({ error: "Failed to retrieve students" });
-    });
+app.get("/", (req, res) => {
+  try {
+   res.json({message: "all is good you are connecting to "})
+  }catch(err){
+    console.log(error)
+  }
+})
+app.get("/students", async (req, res) => {
+  try {
+   const response = await Student.find()
+    console.log("Retrieved students ->", response);
+    res.status(200).json(response);
+  }catch (error){
+    console.log(error)
+  }
 });
+
+// this is to create a new student
+app.post("/students", async (req,res) =>{
+  try {
+    const newStudent = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+    linkedinUrl: req.body.linkedinUrl,
+    program: req.body.proram,
+    background: req.body.background,
+    image: req.body.image,
+    cohort:req.body.cohort
+    }
+   const response = await Student.create(newStudent)
+   res.status(200).json(response)
+   console.log("new student created")
+  }catch(error){
+   console.log(error)
+  }
+})
+
+
+// this is to update the student 
+app.patch("/students/:studentId", async (req,res) =>{
+  try {
+    const updatedStudent = {
+     firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+    linkedinUrl: req.body.linkedinUrl,
+    program: req.body.proram,
+    background: req.body.background,
+    image: req.body.image
+    
+    }
+   const response = await Student.findByIdAndUpdate(req.params.studentId,updatedStudent, {new:true})
+   res.status(200).json(response)
+   console.log("new student updated")
+  }catch(error){
+    console.log(error)
+  }
+})
+
+
+// this is to delete a student 
+app.delete("/students/:studentId", async (req,res) =>{
+  try {
+   const response = await Student.findByIdAndDelete(req.params.studentId)
+   res.sendStatus(200)
+   console.log("student deleted")
+  }catch(error){
+    console.log(error)
+  }
+})
 
 // Start server
 app.listen(PORT, () => {

@@ -6,14 +6,13 @@ const studentSchema = new mongoose.Schema({
   email: String,
   phone: String,
   linkedinUrl: String,
-  languages: [String],
   program: String,
   background: String,
   image: String,
-  cohort: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Cohort",
-  },
+  cohort:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Cohort"
+  }
 });
 
 module.exports = mongoose.model("Student", studentSchema);
