@@ -236,6 +236,8 @@ app.delete("/students/:studentId", async (req, res) => {
   }
 });
 
+const indexRouter = require("./routes/index.routes");
+app.use("/api", indexRouter);
 // server listen & PORT
 
 // Start server
